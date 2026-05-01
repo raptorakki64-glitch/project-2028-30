@@ -11,9 +11,24 @@
   --color-brand-surface: #fff8f6;
   --color-brand-surface-container: #ffe9e3;
 
+  /* Nexa Colors */
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-900: #7c2d12;
+  --color-dark-900: #0a0503;
+  --color-dark-800: #170a05;
+  --color-dark-700: #241108;
+
   --font-display-hero: "Noto Serif";
   --font-headline-lg: "Noto Serif";
   --font-body-lg: "Be Vietnam Pro";
+
+  --shadow-glow-lg: 0 0 25px rgba(249, 115, 22, 0.5);
+  --shadow-glow-xl: 0 0 40px rgba(249, 115, 22, 0.6);
+  --shadow-glow-sm: 0 0 10px rgba(249, 115, 22, 0.4);
 }
 
 @layer base {
@@ -23,11 +38,61 @@
 }
 
 .glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+}
+
+.glass-light {
   @apply bg-white/70 backdrop-blur-lg border border-white/20;
 }
 
-.glass-dark {
-  @apply bg-black/40 backdrop-blur-xl border border-white/10;
+.text-gradient {
+  background: linear-gradient(to right, #fbbf24, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Nexa 4D Grid Background */
+.perspective-grid {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 100vh;
+  background-image: 
+      linear-gradient(to right, rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(75deg);
+  transform-origin: bottom;
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  animation: gridMove 3s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(30px, -50px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.animate-blob {
+  animation: blob 10s infinite alternate;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }
 
 .text-shadow-sm {
